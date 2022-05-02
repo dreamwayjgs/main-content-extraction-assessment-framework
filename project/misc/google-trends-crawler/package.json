@@ -1,0 +1,22 @@
+{
+  "name": "main-content-framework-chrome-extension",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build src/manifest.json",
+    "watch": "parcel watch src/manifest.json --no-hmr"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.0",
+    "browserlist": "^1.0.1",
+    "typescript": "^4.3.5"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
+  "dependencies": {
+    "@types/chrome": "^0.0.148",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-web-extension": "^1.6.1"
+  }
+}

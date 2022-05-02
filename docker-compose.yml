@@ -1,0 +1,82 @@
+version: "3"
+
+services:
+  node:
+    image: node:14
+    volumes:
+      - .:/workspace
+    tty: true
+    stdin_open: true
+    ports:
+      - ${API_PORT:-59000}:8000
+      - ${MHTML_PORT:-59010}:8001
+  pg:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: 1234
+    expose:
+      - "5432"
+    volumes:
+      - ./dbhome:/home
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_LOGIN_EMAIL:-admin@test.com}"
+      - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_LOGIN_PASSWORD:-1234}"
+    ports:
+      - ${PGADMIN_PORT:-59001}:80
+  mongo-express:
+    image: mongo-express
+    depends_on: 
+      - mongo
+      - mongodb-secondary
+      - mongodb-arbiter
+    ports:
+      - ${MONGO_EXPRESS_PORT:-59002}:8081
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://root:1234@mongo:27017/admin?authSource=admin&replicaset=replicaset
+    restart: on-failure
+
+  mongo:
+    image: 'bitnami/mongodb:4.4'
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongo
+      - MONGODB_REPLICA_SET_MODE=primary      
+      - MONGODB_ROOT_PASSWORD=1234
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    volumes:
+      - './dbhome:/home'
+      - 'mongodb_master_data:/bitnami'
+    expose:
+      - 27017
+
+  mongodb-secondary:
+    image: 'bitnami/mongodb:4.4'
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-secondary
+      - MONGODB_REPLICA_SET_MODE=secondary
+      - MONGODB_INITIAL_PRIMARY_HOST=mongo
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=1234
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    expose:
+      - 27017
+
+  mongodb-arbiter:
+    image: 'bitnami/mongodb:4.4'
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongodb-arbiter
+      - MONGODB_REPLICA_SET_MODE=arbiter
+      - MONGODB_INITIAL_PRIMARY_HOST=mongo
+      - MONGODB_INITIAL_PRIMARY_ROOT_PASSWORD=1234
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
+    expose:
+      - 27017
+
+volumes:
+  mongodb_master_data:
+    driver: local
+  

@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/prisma/pg/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_URL")
+}
+
+model Stored {
+  id       BigInt @id @default(autoincrement())
+  rawHtml  String
+  elements Json
+}

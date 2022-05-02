@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/prisma/mongo/client"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_URL")
+}
+
+model Webpage {
+  id                String              @id @default(auto()) @map("_id") @db.ObjectId
+  url               String
+  source            String
+  savedDate         DateTime?
+  description       Json?
+  sample            Boolean?
+  Stored            Stored[]
+  Answer            Answer[]
+  ExtractionResult  ExtractionResult[]
+  EvaluationMetrics EvaluationMetrics[]
+}
+
+model Stored {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  pid           String  @db.ObjectId
+  mhtmlFilePath String
+  dataStoreId   BigInt
+  webpage       Webpage @relation(fields: [pid], references: [id])
+
+}
+
+model Answer {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  pid      String   @db.ObjectId
+  userId   String
+  tagType  String
+  hyuIndex String
+  media    Boolean?
+  webpage  Webpage  @relation(fields: [pid], references: [id])
+}
+
+model ExtractionResult {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  pid     String  @db.ObjectId
+  name    String
+  result  Json
+  webpage Webpage @relation(fields: [pid], references: [id])
+}
+
+model EvaluationMetrics {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  pid        String  @db.ObjectId
+  name       String
+  metric     String
+  answerUser String
+  values     Json
+  error      String?
+  webpage    Webpage @relation(fields: [pid], references: [id])
+}

@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Content Extraction Manager Template",
+  "version": "1.0",
+  "description": "Content Extraction Framework",
+  "author": "Geunseong Jung",
+  "homepage_url": "http://db.hayang.ac.kr",
+  "background": {
+    "scripts": [
+      "background/index.ts"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "inject/index.ts"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "devtools_page": "devtools/index.html",
+  "options_page": "options/index.html",
+  "web_accessible_resources": [
+    "devtools/index.html",
+    "devtools/pages/panel.html",
+    "background/domdistiller/*"
+  ],
+  "permissions": [
+    "<all_urls>",
+    "pageCapture",
+    "tabs",
+    "contextMenus",
+    "webNavigation",
+    "downloads",
+    "storage",
+    "downloads.open"
+  ]
+}
