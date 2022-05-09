@@ -7,7 +7,7 @@ export class LocalConfig {
   constructor() {
     this.host = process.env.HOST || ''
     this.mhtmlApi = process.env.MHTML_API || ''
-    console.log("새로운 설정", this.host, this.mhtmlApi)
+    console.log("Server URLs", this.host, this.mhtmlApi)
   }
   static getInstance() {
     if (!LocalConfig.instance) {
@@ -18,15 +18,15 @@ export class LocalConfig {
   init() {
     chrome.storage.sync.get(['host', 'mhtmlApi', 'pythonApi'], items => {
       if (items.host !== undefined && items.host !== '') this.host = items.host;
-      console.log("HOST를 확인!", this.host)
+      console.log("HOST init", this.host)
       if (items.mhtmlApi !== undefined && items.host !== '') this.mhtmlApi = items.mhtmlApi;
-      console.log("MHTML_API를 확인!", this.mhtmlApi)
+      console.log("MHTML_API init", this.mhtmlApi)
     })
   }
   setToEnv() {
-    console.log('리셋', this.host, this.mhtmlApi)
     chrome.storage.sync.set({ host: process.env.HOST })
     chrome.storage.sync.set({ mhtmlApi: process.env.MHTML_API })
+    console.log('Server URL reset')
   }
 }
 

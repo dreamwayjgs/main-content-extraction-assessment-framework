@@ -107,8 +107,7 @@ export async function postMetrics(ctx: Context) {
   const { pid } = ctx.params
   const data = ctx.request.body as EvaluationMetrics[]
   console.log("입력", data)
-  const jobs = data.map(async o => {
-    console.log(o.name, o.metric)
+  for (const o of data) {
     const exist = await mongo.evaluationMetrics.findFirst({
       where: {
         name: o.name,
@@ -116,19 +115,16 @@ export async function postMetrics(ctx: Context) {
         pid: pid
       }
     })
-    if (exist) {
-      return Promise.resolve()
-    }
+    if (exist) continue;
     console.log('Update', pid, o.name)
-    return mongo.evaluationMetrics.create({
+    await mongo.evaluationMetrics.create({
       data: {
         ...o,
         pid: pid
       }
     })
-  })
+  }
 
-  const existResults = await Promise.all(jobs)
   console.log("Metric updated", pid)
 
   ctx.body = {
