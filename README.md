@@ -20,15 +20,15 @@ docker-compose up
     - Open VSCode in root directory
     - Click on "Open a Remote Window" in the botton right conner.
 
-     ![remote_icon](./doc/image01.png)
+     ![remote_icon](./docs/image01.png)
 
     - Select "Open Folder in Container..." in the dropdown menu.
 
-    <img src="./doc/image02.png" height="400" alt="remote_menu" />
+    <img src="./docs/image02.png" height="400" alt="remote_menu" />
 
     - Select the "node" folder in root directory and click "open" in the dialog box. (Click open button, NOT doubleclick folder.)
 
-    <img src="./doc/image03.png" height="400" alt="select_node" />
+    <img src="./docs/image03.png" height="400" alt="select_node" />
 
 # Directories
 ## /project
