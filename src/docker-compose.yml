@@ -35,7 +35,7 @@ services:
       - ${MONGO_EXPRESS_PORT:-59002}:8081
     environment:
       - ME_CONFIG_MONGODB_URL=mongodb://root:1234@mongo:27017/admin?authSource=admin&replicaset=replicaset
-    restart: on-failure
+    restart: always
 
   mongo:
     image: 'bitnami/mongodb:4.4'

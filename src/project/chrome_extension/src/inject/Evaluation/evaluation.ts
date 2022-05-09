@@ -38,7 +38,6 @@ export function evaluate(results: ExtractionResult[], answers: Answer[]) {
     return []
   }
   const parsers = falsyFilter(results.map(getParser))
-  // const parsers = falsyFilter(results.filter(r => r.name.includes('tabnet')).map(getParser))
   const evalResults = parsers.map(parser => {
     if (parser.name.includes("hyucentroid")) {
       parser.mark()

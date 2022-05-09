@@ -75,7 +75,3 @@ Dumping from mongodb database in docker container example:
 Restore example:
 
     mongorestore --gzip --archive=maincontent_pg.dump
-
-<!-- # Related Repos
-[Google TabNet Models](https://github.com/dreamwayjgs/main-sweeper-tabnet) -->
-

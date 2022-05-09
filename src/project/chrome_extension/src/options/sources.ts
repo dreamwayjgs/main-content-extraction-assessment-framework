@@ -8,6 +8,7 @@ import { Source } from "../types/models";
 import { generateLinks } from "./backgroundConnection";
 
 async function getSources(url: string) {
+  // TODO: If the endpoint of getting source is not /source, change the url.
   const { sources } = await GET(url, 'source')
   return sources
 }

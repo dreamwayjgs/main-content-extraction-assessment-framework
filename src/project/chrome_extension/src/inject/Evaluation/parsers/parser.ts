@@ -80,7 +80,6 @@ export abstract class Parser {
     })
     evalReports.push(...blockReports)
 
-    //TODO: Block Reports
     return evalReports
   }
 }
