@@ -57,7 +57,36 @@ Docker compose file for development server and databases.
 Environment variables for the docker-compose.yml.
 
 # Demo Datasets
+## Descrption
+|Name|URLs|Sampled|Saved|Readable|
+|:----|:----|:----|:----|:----|
+|GoogleTrends-2017|12720|400|390|285|
+|GoogleTrends-2020|10560|400|388|240|
+|GoogleTrends-2020-KR|296|50|43|21|
+|GoogleTrends-2020-JP|450|50|47|24|
+|GoogleTrends-2020-ID|900|50|50|31|
+|GoogleTrends-2020-FR|1580|100|97|39|
+|GoogleTrends-2020-RU|890|100|95|48|
+|GoogleTrends-2020-SA|260|100|97|43|
+|baidu-2020 (CN)|1990|200|193|53|
+
+1. Get keywords from GoogleTrends and Baidu.
+    - 2020: https://trends.google.com/trends/yis/2020/GLOBAL/        
+    - 2017: https://trends.google.com/trends/yis/2017/GLOBAL/
+    - baidu: https://baijiahao.baidu.com/s?id=1686016936405463174
+1. Query the keywords to Google (or Baidu) and take top 100 links (URLs).
+1. Randomly sampled from the URLs and crawled the pages (Sampled).
+1. Successfully crawled pages (Saved).
+    - Broken links, 404, etc. are not saved.
+1. Readable pages (Readable).
+    - At least one 'maincontent' tagged element by annotators.
+    - If the annotators thought any readable main content (text) existed on the page, they determined it was readable.
+    - Global, KR, JP, CN: Annotated by native speakers or who can read the language.
+    - Others: Annotated by Korean speakers.
+
+
 ## Postgres
+It contains raw HTML strings. The PK can retrieved from the Stored Collection in the MongoDB below.
 
 [Download here](https://dbnas.hanyang.ac.kr/s/KH7t9w8sY6RxxBQ/download)
 
@@ -71,6 +100,7 @@ Restore example:
 
 
 ## Mongodb
+It contains data and metadata except raw data (Postgresql) and MHTML files.
 
 [Download here](https://dbnas.hanyang.ac.kr/s/9rcMqA9pwG5pFzm/download)
 
