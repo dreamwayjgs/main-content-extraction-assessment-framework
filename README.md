@@ -37,6 +37,8 @@ docker-compose up
     - Select the "node" folder in root directory and click "open" in the dialog box. (Click open button, NOT doubleclick folder.)
 
     <img src="./docs/image03.png" height="400" alt="select_node" />
+3. Implement your functions in the <code>src/project/chrome_extension</code> folder.
+    - You can get examples by finding <code>// EXAMPLE</code> and <code>// TODO:</code> in <code>*.ts</code> files.
 
 # Directories
 ## /project
