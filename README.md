@@ -8,6 +8,14 @@
  This repository contains the framework with the demo backend server (in <code>/project/api</code> folder).
 
 # Instructions
+## Run Readability.js example (Quickstart)
+1. Run docker containers with [docker-compose](https://docs.docker.com/compose/). You can use <code>.env</code> file to configure the docker containers.
+```
+docker-compose up
+```
+1. In the nodejs container, [run the backend server.](/src/project/api/README.md)
+1. [Build browser extension.](/src/project/chrome_extension/README.md)
+
 ## Development environments
 We recommand [VSCode Remote Containers feature](https://code.visualstudio.com/docs/remote/containers) to use this framework. Or you need [nodejs](https://nodejs.org/en/download/) >= 14.
 
