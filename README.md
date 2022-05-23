@@ -57,6 +57,9 @@ Docker compose file for development server and databases.
 Environment variables for the docker-compose.yml.
 
 # Demo Datasets
+
+Download Mirror [Figshare](https://figshare.com/s/7043152c37d35edb3c15)
+
 ## Descrption
 |Name|URLs|Sampled|Saved|Readable|
 |:----|:----|:----|:----|:----|
@@ -115,3 +118,15 @@ Dumping from mongodb database in docker container example:
 Restore example:
 
     mongorestore --gzip --archive=maincontent_pg.dump
+
+
+## MHTML files
+It contains MHTML files for documents from <code>Webpage</code> collection in the MongoDB.
+
+[Download here](https://dbnas.hanyang.ac.kr/s/RgmH5i6SC4EndKW)
+
+Restore this folder to your api's static serve directory. In our demo server, it is <code>/src/project/api/static/mhtml</code>.
+
+Restore example:
+
+    tar -zxf maincontent_mhtml.tar.gz
