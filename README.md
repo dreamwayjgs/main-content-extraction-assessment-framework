@@ -1,4 +1,7 @@
 # Main content extraction Framework
+**(!NOTICE!) If you looking for the Grid, Centering, and Expanding (GCE) implimentation, available here: https://gitlab.com/dreamwayjgs/main-content-extractor-v2**
+
+
  A WebExtension based framework for the assessment of Main Content Extraction Methods from web pages. This framework provides four steps to assess the main content extraction methods:
    1. Crawling web pages
    1. Curation: Annotating and labeling web pages.
