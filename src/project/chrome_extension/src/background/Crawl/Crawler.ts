@@ -31,6 +31,8 @@ export class Crawler extends Task {
         }
         getCrawlConfig().then(config => {
           resolve(new Crawler(tab.id!, pages, config, requestCallback, responseCallback))
+        }).catch(reason => {
+          console.log("Cannot get configuration")
         })
       })
     })

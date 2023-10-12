@@ -22,8 +22,11 @@ export function getDefaultConfig(config?: Partial<TaskConfig>): TaskConfig {
 export async function getCurrentConfig() {
   return new Promise<any>((resolve, reject) => {
     chrome.storage.sync.get('configJson', items => {
-      if (items.configJson !== undefined) {
+      if (Object.keys(items).length > 0 && items.configJson !== undefined) {
         resolve(JSON.parse(items.configJson))
+      }
+      else {
+        resolve(getDefaultConfig())
       }
     })
   })

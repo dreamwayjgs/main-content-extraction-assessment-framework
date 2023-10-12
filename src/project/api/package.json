@@ -34,7 +34,7 @@
     "start:dev": "pm2 install typescript && pm2 start  ecosystem.config.js --only 'api_dev,mhtml-server'",
     "restart": "pm2 delete ecosystem.config.js && pm2 install typescript && yarn start",
     "restart:dev": "pm2 delete ecosystem.config.js && pm2 install typescript && yarn start:dev",
-    "db-init": "prisma db push --schema prisma/schema.pg.prisma && prisma generate --schema prisma/schema.mongo.prisma",
+    "db-init": "prisma db push --schema prisma/schema.pg.prisma && prisma db push --schema prisma/schema.mongo.prisma",
     "db": "prisma generate --schema prisma/schema.pg.prisma && prisma generate --schema prisma/schema.mongo.prisma"
   },
   "ts-standard": {
